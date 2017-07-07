@@ -2,10 +2,16 @@ package com.example.wataliba.myapplication.Repository;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
+import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteQueryBuilder;
 import android.util.Log;
 
 import com.example.wataliba.myapplication.Entity.EntityNoivos;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by wataliba on 30/03/2017.
@@ -93,5 +99,61 @@ public class RepositoryNoivos {
         if (db != null) {
             db.close();
         }
+    }
+
+
+    public EntityNoivos buscarNoivo(String identificacao) {
+        EntityNoivos noivos = null;
+
+        try {
+            // Idem a: SELECT _id,nome,placa,ano from evento where nome = ?
+            Cursor c = db.query(NOME_TABELA, EntityNoivos.colunas
+                    , EntityNoivos.Noivos.ID + "='" + identificacao + "'", null, null, null, null);
+
+            // Se encontrou...
+            if (c.moveToNext()) {
+                noivos = new EntityNoivos(c);
+            }
+        } catch (SQLException e) {
+            Log.e(CATEGORIA, "Erro ao buscar o noivo: " + e.toString());
+            return null;
+        }
+
+        return noivos;
+    }
+
+    public Cursor getCursor() {
+        try {
+            // select * from carros
+            return db.query(NOME_TABELA, EntityNoivos.colunas, null, null, null, null, null, null);
+        } catch (SQLException e) {
+            Log.e(CATEGORIA, "Erro ao buscar os evetnos: " + e.toString());
+            return null;
+        }
+    }
+
+    // Retorna uma lista com todos os carros
+    public List<EntityNoivos> listarNoivos() {
+        Cursor c = getCursor();
+
+        List<EntityNoivos> noivos = new ArrayList<EntityNoivos>();
+
+        if (c.moveToFirst()) {
+            // Loop até o final
+            do {
+                noivos.add(new EntityNoivos(c));
+            } while (c.moveToNext());
+        }
+
+        return noivos;
+    }
+
+    // Busca um carro utilizando as configurações definidas no
+    // SQLiteQueryBuilder
+    // Utilizado pelo Content Provider de carro
+    public Cursor query(SQLiteQueryBuilder queryBuilder, String[] projection, String selection, String[] selectionArgs,
+                        String groupBy, String having, String orderBy) {
+        Cursor c = queryBuilder.query(this.db, projection, selection, selectionArgs, groupBy, having, orderBy);
+        return c;
     }
 }

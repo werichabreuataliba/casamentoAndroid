@@ -51,20 +51,20 @@ public class EntityEvento {
 
     public EntityEvento(Cursor c)
     {
-        this._id = c.getString(c.getColumnIndex("_id"));
-        this._nome = c.getString(c.getColumnIndex("nome"));
+        this._id = c.getString(c.getColumnIndex(Evento._ID));
+        this._nome = c.getString(c.getColumnIndex(Evento.NOME));
 
         this._noivos = new EntityNoivos();
-        _noivos.set_id(c.getString(c.getColumnIndex("noivos_id")));
+        _noivos.set_id(c.getString(c.getColumnIndex(Evento.NOIVOS_ID)));
 
-        this._convite = c.getString(c.getColumnIndex("convite"));
-        this._latidude_longitude = c.getString(c.getColumnIndex("latidude_longitude"));
-        this._ativo = c.getInt(c.getColumnIndex("ativo")) == 1 ? true : false ;
-        this._hoaraio_evento = c.getString(c.getColumnIndex("hoarario_evento"));
-        this._data_evento = c.getString(c.getColumnIndex("data_evento"));
-        this._prenda_preco_min= c.getDouble(c.getColumnIndex("prenda_preco_min"));
-        this._prenda_preco_max = c.getDouble(c.getColumnIndex("prenda_preco_max"));
-        this._endereco = c.getString(c.getColumnIndex("endereco"));
+        this._convite = c.getString(c.getColumnIndex(Evento.CONVITE));
+        this._latidude_longitude = c.getString(c.getColumnIndex(Evento.LATITUDE_LONGITUDE));
+        this._ativo = c.getInt(c.getColumnIndex(Evento.ATIVO)) == 1 ? true : false ;
+        this._hoaraio_evento = c.getString(c.getColumnIndex(Evento.HORARIO_EVENTO));
+        this._data_evento = c.getString(c.getColumnIndex(Evento.DATA_EVENTO));
+        this._prenda_preco_min= c.getDouble(c.getColumnIndex(Evento.PRENDA_PRECO_MIN));
+        this._prenda_preco_max = c.getDouble(c.getColumnIndex(Evento.PRENDA_PRECO_MAX));
+        this._endereco = c.getString(c.getColumnIndex(Evento.ENDERECO));
     }
 
     public EntityNoivos get_noivos() {
@@ -175,18 +175,17 @@ public class EntityEvento {
         // Ordenação default para inserir no order by
         public static final String DEFAULT_SORT_ORDER = "_id ASC";
 
-        public static final String NOME = "nome";
-        public static final String ID = "_id";
-        public static final String NOIVOS_ID = "noivos_id";
-
-        public static final String CONVITE = "convite";
-        public static final String LATITUDE_LONGITUDE = "latidude_longitude";
-        public static final String ATIVO = "ativo";
-        public static final String HORARIO_EVENTO = "hoarario_evento";
-        public static final String DATA_EVENTO = "data_evento";
-        public static final String PRENDA_PRECO_MIN = "prenda_preco_min";
-        public static final String PRENDA_PRECO_MAX = "prenda_preco_max";
-        public static final String ENDERECO = "endereco";
+        public static final String NOME =               "nome_evento";
+        public static final String ID =                 "_id";
+        public static final String NOIVOS_ID =          "noivos_id";
+        public static final String CONVITE =            "convite_evento";
+        public static final String LATITUDE_LONGITUDE = "latitude_longitude_evento";
+        public static final String ATIVO =              "ativo";
+        public static final String HORARIO_EVENTO =     "horario_evento";
+        public static final String DATA_EVENTO =        "data_evento";
+        public static final String PRENDA_PRECO_MIN =   "prenda_preco_min";
+        public static final String PRENDA_PRECO_MAX =   "prenda_preco_max";
+        public static final String ENDERECO =           "endereco_evento";
 
         // Método que constrói uma Uri para um Carro específico, com o seu id
         // A Uri é no formato "content://br.livro.android.provider.carro/carros/id"

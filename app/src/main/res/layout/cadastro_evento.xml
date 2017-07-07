@@ -12,7 +12,9 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Nome do Evento:" />
+        android:text="Nome do Evento:"
+        android:id="@+id/txt"
+        android:maxLength="60"/>
 
     <LinearLayout
         android:id="@+id/linearLayout2"
@@ -24,7 +26,8 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:inputType="textPersonName" >
+            android:inputType="textPersonName"
+            android:maxLength="60">
 
             <requestFocus />
         </EditText>
@@ -45,7 +48,8 @@
             android:id="@+id/txtNoivos"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:maxLength="60"/>
 
     </LinearLayout>
 
@@ -64,7 +68,8 @@
             android:id="@+id/txtEndereco"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:maxLength="120"/>
 
     </LinearLayout>
 
@@ -95,7 +100,8 @@
                     android:inputType="numberDecimal"
                     android:ems="10"
                     android:id="@+id/txtPrecoMin"
-                    android:layout_column="1" />
+                    android:layout_column="1"
+                    android:maxLength="5" />
 
             </TableRow>
 
@@ -116,7 +122,8 @@
                     android:inputType="numberDecimal"
                     android:ems="10"
                     android:id="@+id/txtPrecoMax"
-                    android:layout_column="1" />
+                    android:layout_column="1"
+                    android:maxLength="5" />
             </TableRow>
 
             <TableRow
@@ -134,8 +141,9 @@
                     android:layout_height="wrap_content"
                     android:inputType="date"
                     android:ems="10"
-                    android:id="@+id/editText2"
-                    android:layout_column="1" />
+                    android:id="@+id/txtData"
+                    android:layout_column="1"
+                    android:maxLength="10" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -149,8 +157,9 @@
                     android:layout_height="wrap_content"
                     android:inputType="time"
                     android:ems="10"
-                    android:id="@+id/editText"
-                    android:layout_column="4" />
+                    android:id="@+id/txtHora"
+                    android:layout_column="4"
+                    android:maxLength="5" />
 
             </TableRow>
 

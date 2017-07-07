@@ -53,19 +53,20 @@ public class RepositoryEvento {
         values.put(EntityEvento.Evento.NOME, evento.get_nome());
         values.put(EntityEvento.Evento.ENDERECO, evento.get_endereco());
        // values.put(EntityEvento.Evento.ID, evento.get_id());
-        values.put(EntityEvento.Evento.LATITUDE_LONGITUDE, evento.get_latidude_longitude());
-        values.put(EntityEvento.Evento.HORARIO_EVENTO, evento.get_hoaraio_evento());
-        values.put(EntityEvento.Evento.DATA_EVENTO, evento.get_data_evento());
-        values.put(EntityEvento.Evento.PRENDA_PRECO_MAX, evento.get_prenda_preco_max());
         values.put(EntityEvento.Evento.PRENDA_PRECO_MIN, evento.get_prenda_preco_min());
-        values.put(EntityEvento.Evento.ATIVO, evento.is_ativo());
+        values.put(EntityEvento.Evento.PRENDA_PRECO_MAX, evento.get_prenda_preco_max());
+        values.put(EntityEvento.Evento.DATA_EVENTO, evento.get_data_evento());
+        values.put(EntityEvento.Evento.HORARIO_EVENTO, evento.get_hoaraio_evento());
         values.put(EntityEvento.Evento.NOIVOS_ID, evento.get_noivos().get_id());
+        values.put(EntityEvento.Evento.LATITUDE_LONGITUDE, evento.get_latidude_longitude());
+        values.put(EntityEvento.Evento.ATIVO, evento.is_ativo());
 
         long id = inserir(values);
         return id;
     }
 
     public long inserir(ContentValues valores) {
+
         long id = db.insert(NOME_TABELA, "", valores);
         return id;
     }
@@ -147,7 +148,12 @@ public class RepositoryEvento {
     public Cursor getCursor() {
         try {
             // select * from carros
-            return db.query(NOME_TABELA, EntityEvento.colunas, null, null, null, null, null, null);
+            //String selectQuery = "SELECT  * FROM " + NOME_TABELA +";";
+            //return db.rawQuery(selectQuery, null);
+            Cursor c = db.query(NOME_TABELA, EntityEvento.colunas, null, null, null, null, null, null);
+            //return db.query(NOME_TABELA, EntityEvento.colunas, null, null, null, null, null, null);
+            return c;
+
         } catch (SQLException e) {
             Log.e(CATEGORIA, "Erro ao buscar os evetnos: " + e.toString());
             return null;

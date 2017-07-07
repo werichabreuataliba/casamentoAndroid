@@ -23,6 +23,10 @@ public class EntityNoivos {
         this._contato = _contato;
     }
 
+    public static String[] colunas = new String[] { Noivos._ID, Noivos.NOME
+            , Noivos.CONTATO };
+   // public static final String AUTHORITY = "br.livro.android.provider.noivos";
+
     public EntityNoivos(Cursor c)
     {
         this._id = c.getString(c.getColumnIndex("_id"));

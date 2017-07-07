@@ -27,11 +27,13 @@ public class DataEventHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         Log.i(CATEGORIA, "Criando banco com SQL");
-        int qtdeScripts = scriptSQLCreate.length;
-        for (int i = 0 ; i < qtdeScripts; i ++){
-            String sql = scriptSQLCreate[i];
-            Log.i(CATEGORIA, sql);
-            db.execSQL(sql);
+        if (!(scriptSQLCreate == null)) {
+            int qtdeScripts = scriptSQLCreate.length;
+            for (int i = 0; i < qtdeScripts; i++) {
+                String sql = scriptSQLCreate[i];
+                Log.i(CATEGORIA, sql);
+                db.execSQL(sql);
+            }
         }
     }
 
