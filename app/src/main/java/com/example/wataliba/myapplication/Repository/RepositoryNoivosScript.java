@@ -22,7 +22,7 @@ public class RepositoryNoivosScript extends RepositoryNoivos {
                     append(", nome text not null").
                     append(", contato text not null );").toString()};*/
 
-    private static final String SCRIPT_DATABASE_CREATE =
+    public static final String SCRIPT_DATABASE_CREATE =
             new StringBuilder().
                     append("create table noivos ( _id text primary key").
                     append(", nome text not null").

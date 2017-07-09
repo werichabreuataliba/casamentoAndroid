@@ -15,7 +15,7 @@ import com.example.wataliba.myapplication.Entity.EntityEvento;
 import com.example.wataliba.myapplication.Entity.EntityNoivos;
 import com.example.wataliba.myapplication.Repository.RepositoryEvento;
 import com.example.wataliba.myapplication.Repository.RepositoryNoivos;
-import com.example.wataliba.myapplication.Repository.RepositoryNoivosScript;
+import com.example.wataliba.myapplication.Repository.RepositoryTables;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -48,14 +48,15 @@ public class CadastroEvento extends Activity implements View.OnClickListener {
         setContentView(R.layout.cadastro_evento);
 
         try {
-            RepositoryNoivosScript noivos = new RepositoryNoivosScript(this);
-            noivos.fechar();
+
+            RepositoryTables tables = new RepositoryTables(this);
+            tables.fechar();
+
             RepositoryNoivos n1 = new RepositoryNoivos(this);
             EntityNoivos n = n1.buscarNoivo("1");
             if((n == null)) {
                 n1.inserir(new EntityNoivos("1", "dono deste smart Fone", "5555-5555"));
             }
-            noivos.fechar();
         }
         catch (Exception exc){
             Toast.makeText(CadastroEvento.this, exc.getMessage(), Toast.LENGTH_SHORT).show();
@@ -105,8 +106,8 @@ public class CadastroEvento extends Activity implements View.OnClickListener {
             default:
                 try {
 
-                    //this.validaCampos();
-                    //this.salvarEvento();
+                    this.validaCampos();
+                    this.salvarEvento();
                     Intent j = new Intent(v.getContext(), ListaEventosCriados.class);
                     startActivity(j);
 
@@ -178,4 +179,7 @@ public class CadastroEvento extends Activity implements View.OnClickListener {
             }
         }
     }
+
+
+
 }

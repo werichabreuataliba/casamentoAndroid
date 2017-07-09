@@ -1,6 +1,7 @@
 package com.example.wataliba.myapplication;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ListView;
 
@@ -13,7 +14,7 @@ import java.util.List;
 /**
  * Created by wataliba on 21/06/2017.
  */
-public class ListaEventosCriados extends Activity{
+public class ListaEventosCriados extends Activity {
 
     List<EntityEvento> listEvento;
     ListaEventosAdapter listaEventosAdapter;
@@ -31,4 +32,12 @@ public class ListaEventosCriados extends Activity{
         this.listaEventosAdapter = new ListaEventosAdapter(this,this.listEvento);
         this.listaEventos.setAdapter(this.listaEventosAdapter);
     }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent i = new Intent(this, MenuInicial.class);
+        startActivity(i);
+    }
+
 }
